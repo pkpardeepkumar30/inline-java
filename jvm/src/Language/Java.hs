@@ -791,3 +791,22 @@ withStatic [d|
         deleteLocalRef jx
       return array
   |]
+
+{-
+  foldM
+    (\array0 (i, x) -> do
+        jx <- reflect x
+        (array1, jx1) <- setObjectArrayElement array0 i jx
+        deleteLocalRef jx1
+        return array1
+    )
+    array (zip [0..n-1] xs)
+
+  borrow array $ \array0 ->
+    forM_ (zip [0..n-1] xs) $ \(i, x) -> do
+      jx <- reflect x
+      jx1 <- borrow jx $ setObjectArrayElement (innerRef array0) i
+      deleteLocalRef jx1
+-}
+
+

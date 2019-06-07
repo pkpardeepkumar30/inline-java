@@ -11,7 +11,7 @@
 module Language.Java.InlineSpec(spec) where
 
 import Data.Int
-import Foreign.JNI (JVMException)
+import Foreign.JNI (JVMException, deleteLocalRef)
 import Language.Java
 import Language.Java.Inline
 import Test.Hspec
